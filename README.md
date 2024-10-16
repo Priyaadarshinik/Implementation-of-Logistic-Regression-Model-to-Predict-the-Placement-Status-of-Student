@@ -27,10 +27,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 df=pd.read_csv('Placement_Data.csv')
 df
+
 # drop the sl_no column as it does have any impact in the dataset
 df= df.drop("sl_no",axis=1)
 df.info
 df=df.drop("salary",axis=1)
+
 #changing to categorical code from object type
 df["gender"]=df["gender"].astype('category')
 df["ssc_b"]=df["ssc_b"].astype('category')
@@ -40,6 +42,7 @@ df["workex"]=df["workex"].astype('category')
 df["specialisation"]=df["specialisation"].astype('category')
 df["status"]=df["status"].astype('category')
 df["hsc_s"]=df["hsc_s"].astype('category')
+
 #use cat.code to change the type
 df["gender"]=df["gender"].cat.codes
 df["ssc_b"]=df["ssc_b"].cat.codes
@@ -50,6 +53,7 @@ df["specialisation"]=df["specialisation"].cat.codes
 df["status"]=df["status"].cat.codes
 df["hsc_s"]=df["hsc_s"].cat.codes
 df
+
 #selecting the feature as lable 
 X=df.iloc[:,:-1].values #values till the column -1
 Y=df.iloc[:,-1].values # value of only one column -1
@@ -60,6 +64,7 @@ X_train.shape
 X_test.shape
 Y_train.shape
 Y_test.shape
+
 clf=LogisticRegression()
 clf.fit(X_train,Y_train)
 Y_pred=clf.predict(X_test)
